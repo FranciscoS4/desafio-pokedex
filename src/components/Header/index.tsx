@@ -9,8 +9,11 @@ import {
 } from './styles'
 
 import Logo2 from '../../assets/logo2.png';
+import { useAuth } from '../../hooks/AuthContext';
 
 export const Header: React.FC = () => {
+
+  const { signOut } = useAuth();
 
   return (
       <HeaderContainer>
@@ -21,7 +24,7 @@ export const Header: React.FC = () => {
             <Link to={"/search"}>Procurar</Link>
             <Link to={"/home"}>Ver Todos</Link>
           </div>
-          <button>Sair <FiLogOut size= {18}/></button>
+          <button onClick={signOut}>Sair <FiLogOut size= {18}/></button>
         </HeaderContent>
       </HeaderContainer>
   )

@@ -16,9 +16,13 @@
 - @unform/web
 - polished
 
-- @types/express
 - typeorm
 - bcryptjs
 - @types/bcryptjs
 - jsonwebtoken
 - @types/jsonwebtoken
+
+Login: "login@gmail.com"
+Password: "123456"
+
+Duração do token 1D

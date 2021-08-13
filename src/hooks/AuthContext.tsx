@@ -67,7 +67,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
 
       sessionStorage.setItem('@Pokedex:token', String(token));
-      sessionStorage.setItem('@Pokemon:user', String(userId));
+      sessionStorage.setItem('@Pokedex:user', String(userId));
 
       setData({ token, user });
       
@@ -80,8 +80,8 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    sessionStorage.remove('@Pokedex:token');
-    sessionStorage.remove('@POkedex:user');
+    sessionStorage.removeItem('@Pokedex:token');
+    sessionStorage.removeItem('@Pokedex:user');
 
     setData({} as AuthState);
   }, []);
