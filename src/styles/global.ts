@@ -13,7 +13,6 @@ const GlobalStyles = createGlobalStyle `
     border: 0;
     font-family: Poppins, serif;
     font-size: 16px;
-    overflow: hidden;
   }
 
   h1, h2, h3, h4, h5, h6, strong {

@@ -20,7 +20,6 @@ export const Header: React.FC = () => {
         <HeaderContent>
           <img src={ Logo2 } alt="Light"/>
           <div>
-            <Link to={"/favorites"}>Favoritos</Link>
             <Link to={"/search"}>Procurar</Link>
             <Link to={"/home"}>Ver Todos</Link>
           </div>
