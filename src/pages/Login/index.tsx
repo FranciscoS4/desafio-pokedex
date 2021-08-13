@@ -2,10 +2,10 @@ import React, { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 import * as Yup from 'yup';
 import { useAuth } from '../../hooks/AuthContext';
@@ -40,34 +40,36 @@ const Login: React.FC = () => {
         password: data.password,
       });
 
-      
+      console.log("logou")
+        
+      return <Redirect to="/home"/>
 
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
 
         formRef.current?.setErrors(errors);
-      } else {
-        
       }
-
     }
   }, [signIn]);
 
   return (
     <Container>
         <Content>
-          <img src={ Logo } alt="Light"/>
-          <Form ref={formRef} onSubmit={handleSubmit}>
-            <h1>Comece a coletar pokémons!</h1>
+          <AnimationContainer>
+            <img src={ Logo } alt="Light"/>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <h1>Comece a coletar pokémons!</h1>
 
-            <Input name="email" placeholder="Email"/>
+              <Input name="email" placeholder="Email"/>
 
-            <Input name="password" placeholder="Senha" type="password"/>
-            
-            <button type="submit">Entrar</button>
-            
-          </Form>
+              <Input name="password" placeholder="Senha" type="password"/>
+              
+              <button type="submit">Entrar</button>
+              
+            </Form>
+
+          </AnimationContainer>
         </Content>
       <Background/>
     </Container>

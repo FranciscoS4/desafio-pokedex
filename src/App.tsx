@@ -6,9 +6,12 @@ import { AuthProvider } from './hooks/AuthContext';
  
 import Routes from './routes';
 
+import IndexedDb from './indexedDb/indexedb';
+
 const App: React.FC = () => {
   return (
     <>
+      <IndexedDb/>
       <BrowserRouter>
         <AuthProvider>
           <Routes />

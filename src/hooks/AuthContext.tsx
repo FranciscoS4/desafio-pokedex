@@ -1,10 +1,11 @@
 import { randomBytes } from 'crypto';
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { object } from 'yup/lib/locale';
-import api from '../services/api';
+import AppError from '../errors/AppError';
+import authConfig from '../config/auth';
+import { sign } from 'jsonwebtoken'
 
 interface AuthState {
-  token: string;
+  token: any;
   user: object;
 }
 
@@ -33,31 +34,60 @@ const AuthProvider: React.FC = ({ children }) => {
     return {} as AuthState
   });
 
-  const signIn = useCallback(async({email}) => {
+  const signIn = useCallback(async({email, password}) => {
 
-    const ramdom = await randomBytes(10);
+    const request = window.indexedDB.open('User');
+
+    request.onsuccess = function(event){
+      const db = request.result;
+
+      const user = db.transaction(['user']).objectStore('user');
+
+      const userEmail = user.get(email);
+  
+  
+      if (!userEmail) {
+        throw new AppError('Incorrect email/password combination.', 401)
+      }
+  
+      const userPassword = user.get(password);
+  
+      if (!userPassword) {
+        throw new AppError('Incorrect email/password combination.', 401)
+      }
+  
+      const { secret, expiresIn } = authConfig.jwt;
+  
+      const userId = "1";
+  
+      const token = sign({}, secret, {
+        subject: userId,
+        expiresIn,
+      });
+
+
+      sessionStorage.setItem('@Pokedex:token', String(token));
+      sessionStorage.setItem('@Pokemon:user', String(userId));
+
+      setData({ token, user });
+      
+    }
+
+    request.onerror = function(event) {
+      console.log("Request error");
+    };
     
-    const token = String(ramdom);
-
-    const user1 = JSON.stringify({user:{nome: "Francisco", email: email}})
-    
-    const user2 = JSON.parse(user1);
-
-    localStorage.setItem('@Pokedex:token', String(token));
-
-    localStorage.setItem('@Pokedex:user', JSON.stringify(user2))
-
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.remove('@Pokedex:token');
-    localStorage.remove('@POkedex:user');
+    sessionStorage.remove('@Pokedex:token');
+    sessionStorage.remove('@POkedex:user');
 
     setData({} as AuthState);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
+    <AuthContext.Provider value={{user: data.user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

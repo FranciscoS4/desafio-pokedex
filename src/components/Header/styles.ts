@@ -32,8 +32,6 @@ export const HeaderContent = styled.nav`
       font-size: 1.1rem;
 
       &:hover {
-        line-break: 2px;
-        border-color:  #343232;
         border: 10px;
         transform: scale(1.1);
         transition: transform 0.10s;

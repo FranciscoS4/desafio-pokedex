@@ -15,3 +15,10 @@
 - @unform/core
 - @unform/web
 - polished
+
+- @types/express
+- typeorm
+- bcryptjs
+- @types/bcryptjs
+- jsonwebtoken
+- @types/jsonwebtoken

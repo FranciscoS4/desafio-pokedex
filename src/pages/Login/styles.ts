@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes} from 'styled-components';
 import loginBackground from '../../assets/light.png';
 import Tooltip from '../../components/Tooltip';
 
@@ -13,6 +13,47 @@ export const Content = styled.div`
 
   width: 100%;
   max-width: 700px;
+`;
+
+export const Background = styled.div`
+  flex: 1;
+  background: url(${loginBackground});
+  background-size: cover;
+
+`;
+
+export const Error = styled(Tooltip)`
+  height: 20px;
+  margin-left: 16px;
+
+  svg {
+    margin: 0;
+    margin-right: 12px;
+  }
+
+  span {
+    position: absolute;
+    background: #FF3326;
+    color: #fff;
+
+    &::before {
+      border-color: #FF3326 transparent;
+    }
+  }
+`;
+
+const appearFromLeft = keyframes`
+  from{
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AnimationContainer = styled.div`
 
   img {
     position: absolute;
@@ -41,7 +82,7 @@ export const Content = styled.div`
       color: #1E1E1F;
     }
 
-   button {
+   button{
       position: absolute;
       width: 365px;
       height: 54px;
@@ -49,38 +90,20 @@ export const Content = styled.div`
       top: 500px;
       margin-top: 1rem;
       border: 0;
+      text-decoration: none;
+      color: #1E1E1F;
 
       background: #FFCB05;
       border-radius: 8px;
-    }
+      cursor: pointer;
 
-    
-  }
-`;
-
-export const Background = styled.div`
-  flex: 1;
-  background: url(${loginBackground});
-  background-size: cover;
-
-`;
-
-export const Error = styled(Tooltip)`
-  height: 20px;
-  margin-left: 16px;
-
-  svg {
-    margin: 0;
-    margin-right: 12px;
-  }
-
-  span {
-    position: absolute;
-    background: #FF3326;
-    color: #fff;
-
-    &::before {
-      border-color: #FF3326 transparent;
+      &:hover {
+        border: 10px;
+        transform: scale(1.01);
+        transition: transform 0.10s;
+      }
     }
   }
+
+  animation: ${appearFromLeft} 2s;
 `;
