@@ -16,7 +16,6 @@
 - @unform/web
 - polished
 
-- typeorm
 - bcryptjs
 - @types/bcryptjs
 - jsonwebtoken

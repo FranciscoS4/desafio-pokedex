@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: relative;
   span {
-    width: 5rem;
+    width: 8rem;
     background: #FF3326;
-    padding: 8px;
+    padding: 4px;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
@@ -17,7 +16,7 @@ export const Container = styled.div`
     bottom: calc(100% + 30px);
     transform: translateX(-50%);
 
-    color: #312e38;
+    color: #ffffff;
 
     &::before {
       content: '';

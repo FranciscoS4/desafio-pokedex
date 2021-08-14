@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LazyLoad from 'react-lazyload';
 
 import { Header } from '../../components/Header';
 import Card from '../../components/Card';
@@ -6,8 +7,6 @@ import Card from '../../components/Card';
 import { Container, List} from './styles';
 
 import api from '../../services/api';
-
-import pokemonf from '../../assets/pokemon.png';
 
 const Home: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -27,7 +26,7 @@ const Home: React.FC = () => {
       });
     }
 
-    const url = `pokemon?_page=${page}&_limit=${perPage}${stringFilters}`;
+    const url = `pokemon?_page=${page}&limit=${perPage}${stringFilters}`;
 
     const response = await api.get(url);
       setTotal(response.headers['x-total-count']);
@@ -39,8 +38,22 @@ const Home: React.FC = () => {
       })
       Promise.all(pokemons).then(value => setPokemons(value));
   }
-  
 
+  function handleScroll() {
+    if (
+      window.innerHeight + window.scrollY + 100>=
+      document.body.scrollHeight
+    ) {
+      const newPage = page + 1;
+
+      const maxPage = Math.round(total / perPage);
+
+      if (page < maxPage) {
+        setPage(newPage);
+      }
+    }
+  }
+  
   useEffect(() => {
     loadPokemons();
   }, []);
@@ -56,6 +69,14 @@ const Home: React.FC = () => {
       loadPokemons();
     }
   }, [page]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [pokemons]);
 
   return (
     <>

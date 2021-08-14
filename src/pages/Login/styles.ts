@@ -24,15 +24,9 @@ export const Background = styled.div`
 
 export const Error = styled(Tooltip)`
   height: 20px;
-  margin-left: 16px;
-
-  svg {
-    margin: 0;
-    margin-right: 12px;
-  }
 
   span {
-    position: absolute;
+    padding:1px;
     background: #FF3326;
     color: #fff;
 
