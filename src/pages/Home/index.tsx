@@ -38,7 +38,6 @@ const Home: React.FC = () => {
         return response.data;
       })
       Promise.all(pokemons).then(value => setPokemons(value));
-      Promise.all(pokemons).then(value => console.log(value));
   }
   
 

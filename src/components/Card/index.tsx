@@ -13,8 +13,6 @@ const Card: React.FC<CardProps> = ({pokemon}) => {
 
   const { isOpen, toggle } = useModal();
 
-  console.log(pokemon.sprites)
-
   const showModal = () => {
     toggle()
   }

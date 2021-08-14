@@ -2,9 +2,21 @@ import React from 'react';
 import ReactDOM  from 'react-dom';
 
 import {FiX} from 'react-icons/fi';
-import { boolean } from 'yup';
 
-import { Wrapper, Header, StyledModal, HeaderText, CloseButton, Content, Backdrop } from './styles';
+import { 
+  Wrapper, 
+  Header, 
+  StyledModal, 
+  HeaderText, 
+  CloseButton, 
+  Content, 
+  Backdrop, 
+  Estatistic,
+  ProgressBarDiv,
+  ProgressBarName, 
+  ProgressBar,
+  ProgressBarStat
+ } from './styles';
 
 
 interface Modal {
@@ -24,9 +36,7 @@ const Modal: React.FC<Modal> = ({isOpen, hide, pokemon}) => {
             <HeaderText>Detalhes</HeaderText>
             <CloseButton onClick={hide}><FiX size={25}/></CloseButton>
           </Header>
-          <Content 
-            stat={pokemon.stats.map((stat: any) => stat)} 
-            type={pokemon.types.map((type: any) => type)}>
+          <Content>
             <h1>{pokemon.name}</h1>
 
             <img src={pokemon.sprites.front_default} alt="front" className="front"></img>
@@ -37,13 +47,23 @@ const Modal: React.FC<Modal> = ({isOpen, hide, pokemon}) => {
               <h2>{pokemon.weight}kg</h2>
             </div>
 
-            <h2 className="estatistic">Estatisticas</h2>
-            <div className="progress-bar1" id='hp' ></div>
-            <div className="progress-bar2" id='atk' ></div>
-            <div className="progress-bar3" id='def' ></div>
-            <div className="progress-bar4" id='satk' ></div>
-            <div className="progress-bar5" id='sdef' ></div>
-            <div className="progress-bar6" id='spd' ></div>
+            <Estatistic>Estatisticas</Estatistic>
+
+           <ProgressBarDiv>
+              {pokemon.stats.map((stat: any) => {
+                let totalStats = 0;
+                  totalStats += stat.base_stat;
+                  return (
+                    <>
+                      <ProgressBarName>{stat.stat.name}</ProgressBarName>
+                      <ProgressBar base_stat={stat.base_stat}></ProgressBar>
+                      <ProgressBarStat>{stat.base_stat}</ProgressBarStat>
+                    </>
+                  );
+              
+                })  
+              }
+          </ProgressBarDiv>
             
           </Content>
         </StyledModal>

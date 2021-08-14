@@ -1,10 +1,10 @@
 import styled, {css} from 'styled-components';
 
 interface ModalProps {
-  stat: any;
-  type: ['normal' | 'fighting' | 'flying' | 'poison' | 'ground' | 'rock' | 'bug' 
-        | 'ghost' | 'steel' | 'fire' | 'water' | 'grass' | 'electric' | 'psychic'
-        | 'ice' | 'dragon' | 'dark' | 'fairy' | 'unknown' | 'shadow'];
+  base_stat: any;
+  // type: ['normal' | 'fighting' | 'flying' | 'poison' | 'ground' | 'rock' | 'bug' 
+  //       | 'ghost' | 'steel' | 'fire' | 'water' | 'grass' | 'electric' | 'psychic'
+  //       | 'ice' | 'dragon' | 'dark' | 'fairy' | 'unknown' | 'shadow'];
 }
 
 export const Wrapper = styled.div`
@@ -68,7 +68,7 @@ export const CloseButton = styled.button`
     }
   }
 `;
-export const Content = styled.div<ModalProps>`
+export const Content = styled.div`
   display: flex;
   width: 87%;
   margin-left: 1.5rem;
@@ -78,14 +78,7 @@ export const Content = styled.div<ModalProps>`
     font-size: 24px;
   }
 
-  .estatistic {
-    position: absolute;
-    font-size: 13px;
-    color: #B8B8B8;
-    margin-top: 18rem;
-  }
-
-  .front {
+  img {
     position: absolute;
     width: 84.53px;
     height: 87.71px;
@@ -102,19 +95,6 @@ export const Content = styled.div<ModalProps>`
       margin-left: 5.8rem;
     }
   }
-
-  .back {
-    position: absolute;
-    width: 84.53px;
-    height: 87.71px;
-    top: 135.13px;
-    margin-top: 1rem;
-
-    background-color: #F3F3F3;
-    border-radius: 8px;
-
-  }
-
   .measures {
     position: absolute;
     margin-top: 11rem;
@@ -122,139 +102,66 @@ export const Content = styled.div<ModalProps>`
     column-width: 2rem;
     font-size: 18px;
   }
+`;
 
-  .progress-bar1{
-    position:absolute;
-    --progress: 38;
+export const Estatistic = styled.h2`
+  position: absolute;
+  font-size: 13px;
+  color: #B8B8B8;
+  margin-top: 18rem;
+`;
+
+export const ProgressBarDiv = styled.div`
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(95px, 60fr));
+  grid-gap: 10px;
+  width: 90%;
+  align-content: center;
+  align-self: center;
+  justify-content:center;
+  margin-top: 47rem;
+  flex: 1;
+`;
+
+export const ProgressBarName = styled.h2`
+  position: initial;
+  font-size: 12px;
+  color: #525150;
+  text-transform: uppercase;
+`;
+
+export const ProgressBarStat = styled.h2`
+  position: initial;
+  font-size: 12px;
+  color: #525150;
+  margin-left: 5rem;
+`
+
+
+export const ProgressBar = styled.div<ModalProps>`
+    position: initial;
+    ${props => props.base_stat && css`
+    --progress: ${props.base_stat};
+    `}
     height: 9px;
-    width: 244px;
+    width: 160px;
     background-color: #F3F3F3;
     display: flex;
     border-radius: 50px;
-    margin-top: 20rem;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+
 
     h1 {
       color: #B8B8B8;
     }
-  }
 
-  .progress-bar1::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  .progress-bar2{
-      position:absolute;
-      --progress: 70;
-      height: 9px;
-      width: 244px;
-      background-color: #F3F3F3;
-      display: flex;
+    &::before {
+      position: static;
+      content: "";
+      width: calc(var(--progress) * 1%);
       border-radius: 50px;
-      margin-top: 21.5rem;
-
-      h1 {
-        color: #B8B8B8;
-      }
-  }
-
-  .progress-bar2::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  .progress-bar3{
-      position:absolute;
-      --progress: 62;
-      height: 9px;
-      width: 244px;
-      background-color: #F3F3F3;
-      display: flex;
-      border-radius: 50px;
-      margin-top: 23rem;
-
-      h1 {
-        color: #B8B8B8;
-      }
-  }
-
-  .progress-bar3::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  .progress-bar4{
-      position:absolute;
-      --progress: 12;
-      height: 9px;
-      width: 244px;
-      background-color: #F3F3F3;
-      display: flex;
-      border-radius: 50px;
-      margin-top: 24.5rem;
-
-      h1 {
-        color: #B8B8B8;
-      }
-  }
-
-  .progress-bar4::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  .progress-bar5{
-      position:absolute;
-      --progress: 95;
-      height: 9px;
-      width: 244px;
-      background-color: #F3F3F3;
-      display: flex;
-      border-radius: 50px;
-      margin-top: 26rem;
-
-      h1 {
-        color: #B8B8B8;
-      }
-  }
-
-  .progress-bar5::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  .progress-bar6{
-      position:absolute;
-      --progress: 10;
-      height: 9px;
-      width: 244px;
-      background-color: #F3F3F3;
-      display: flex;
-      border-radius: 50px;
-      margin-top: 27.5rem;
-
-      h1 {
-        color: #B8B8B8;
-      }
-  }
-
-  .progress-bar6::before{
-    content: "";
-    width: calc(var(--progress) * 1%);
-    border-radius: 50px;
-    background-color: #FFCB05;
-  }
-
-  
-
+      background-color: #FFCB05;
+    }
 `;
