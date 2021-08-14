@@ -3,7 +3,7 @@ import { FiSearch } from 'react-icons/fi'
 
 import { Header } from '../../components/Header';
 
-import { Container, Form } from './styles';
+import { Container, Form, CardContainer, Error } from './styles';
 
 import Card from '../../components/Card';
 import api from '../../services/api';
@@ -27,6 +27,7 @@ const Search: React.FC = () => {
 
       setNewPokemon('');
       setPokemon(response.data);
+      setInputError('')
       
 
     }catch{
@@ -39,11 +40,16 @@ const Search: React.FC = () => {
       <Header/>
       <Container>
         <Form hasError={!!inputError} onSubmit={handleAddPokemon}>
-          <input placeholder="Pesquisar"  onChange={(p) => setNewPokemon(p.target.value)}/>
+          <input value={newPokemon}placeholder="Pesquisar"  onChange={(p) => setNewPokemon(p.target.value)}/>
           <button type="submit"><FiSearch /></button>
         </Form>
-        {pokemon && <Card pokemon={pokemon}/>}
-        
+
+        { inputError && <Error>{inputError}</Error> }
+
+        <CardContainer>
+          {pokemon && <Card pokemon={pokemon}/>}
+        </CardContainer>
+
       </Container>
     </>
   )
