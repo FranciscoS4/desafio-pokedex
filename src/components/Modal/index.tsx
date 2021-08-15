@@ -11,6 +11,7 @@ import {
   CloseButton, 
   Content, 
   Backdrop, 
+  Measures,
   Estatistic,
   ProgressBarDiv,
   ProgressBarName, 
@@ -42,10 +43,10 @@ const Modal: React.FC<Modal> = ({isOpen, hide, pokemon}) => {
             <img src={pokemon.sprites.front_default} alt="front" className="front"></img>
             <img src={pokemon.sprites.back_default} alt="back" className="back"></img>
 
-            <div className="measures">
+            <Measures>
               <h2>{pokemon.height}m</h2>
               <h2>{pokemon.weight}kg</h2>
-            </div>
+            </Measures>
 
             <Estatistic>Estatisticas</Estatistic>
 

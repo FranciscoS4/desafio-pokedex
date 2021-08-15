@@ -95,14 +95,17 @@ export const Content = styled.div`
       margin-left: 5.8rem;
     }
   }
-  .measures {
-    position: absolute;
-    margin-top: 11rem;
-    column-count: 2;
-    column-width: 2rem;
-    font-size: 18px;
-  }
+  
 `;
+
+export const Measures = styled.div`
+  position: absolute;
+  margin-top: 11rem;
+  column-count: 2;
+  column-width: 2rem;
+  font-size: 18px;
+`;
+
 
 export const Estatistic = styled.h2`
   position: absolute;
@@ -136,7 +139,7 @@ export const ProgressBarStat = styled.h2`
   font-size: 12px;
   color: #525150;
   margin-left: 5rem;
-`
+`;
 
 
 export const ProgressBar = styled.div<ModalProps>`

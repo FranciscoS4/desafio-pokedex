@@ -24,8 +24,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@Pokedex:token');
-    const user = localStorage.getItem('@Pokedex:user');
+    const token = sessionStorage.getItem('@Pokedex:token');
+    const user = sessionStorage.getItem('@Pokedex:user');
 
     if ( token && user ) {
       return { token, user: JSON.parse(user)};
